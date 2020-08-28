@@ -10,7 +10,7 @@ param (
 #Git:\Random\DevOps\MarkdownCheck\Correct
 
 $Files = Get-ChildItem -Path $FolderPath -Filter $Filter
-#$file = $files[0]
+#$file = $files[3]
 
 Describe -Name 'Markdown validation' {
 
@@ -75,8 +75,14 @@ Describe -Name 'Markdown validation' {
                 }
             }
 
-            It "6th line should be a blank line" {
-                $content[5] -match $regex_line_6and8 | Should -Be $true
+            if (($($file.Name) -ne 'missing_author.md') -and ($($file.Name) -ne 'missing_title.md') -and ($($file.Name) -ne 'missing_version.md')){
+                It "6th line should be a blank line" {
+                    $content[5] -match $regex_line_6and8 | Should -Be $true
+                }
+            } else {
+                It "6th line should be a blank line" {
+                    $content[5] -match $regex_line_6and8 | Should -Be $false
+                }
             }
 
             if (($($file.Name) -ne 'missing_all.md') -and ($($file.Name) -ne 'missing_toc.md')){
@@ -89,8 +95,14 @@ Describe -Name 'Markdown validation' {
                 }
             }
 
-            It "8th line should be a blank line" {
-                $content[7] -match $regex_line_6and8 | Should -Be $true
+            if (($($file.Name) -ne 'missing_author.md') -and ($($file.Name) -ne 'missing_title.md') -and ($($file.Name) -ne 'missing_version.md')){
+                It "8th line should be a blank line" {
+                    $content[7] -match $regex_line_6and8 | Should -Be $true
+                }
+            } else {
+                It "8th line should be a blank line" {
+                    $content[7] -match $regex_line_6and8 | Should -Be $false
+                }
             }
         }
     }

@@ -2,7 +2,7 @@
 param (
     [Parameter()]
     [ValidateScript({Test-Path -Path $_})]
-    [string]$FolderPath = 'Git:\Random\DevOps\MarkdownCheck\Fail',
+    [string]$FolderPath = 'Git:\Random\DevOps\MarkdownCheck\Incorrect',
     [Parameter()]
     [string]$Filter = '*.md'
 )
@@ -10,7 +10,7 @@ param (
 #Git:\Random\DevOps\MarkdownCheck\Correct
 
 $Files = Get-ChildItem -Path $FolderPath -Filter $Filter
-#$file = $files[3]
+#$file = $files[0]
 
 Describe -Name 'Markdown validation' {
 

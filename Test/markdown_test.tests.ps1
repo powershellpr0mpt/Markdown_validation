@@ -75,7 +75,7 @@ Describe -Name 'Markdown validation' {
                 }
             }
 
-            if (($($file.Name) -ne 'missing_author.md') -and ($($file.Name) -ne 'missing_title.md') -and ($($file.Name) -ne 'missing_version.md')){
+            if (($($file.Name) -ne 'missing_all.md') -and ($($file.Name) -ne 'missing_author.md') -and ($($file.Name) -ne 'missing_title.md') -and ($($file.Name) -ne 'missing_version.md')){
                 It "6th line should be a blank line" {
                     $content[5] -match $regex_line_6and8 | Should -Be $true
                 }

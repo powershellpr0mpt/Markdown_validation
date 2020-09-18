@@ -10,7 +10,7 @@ param (
 #Git:\Random\DevOps\MarkdownCheck\Correct
 
 $Files = Get-ChildItem -Path $FolderPath -Filter $Filter
-#$file = $files[0]
+#$file = $files[1]
 
 Describe -Name 'Markdown validation' {
 
@@ -23,7 +23,7 @@ Describe -Name 'Markdown validation' {
 
     foreach ($file in $Files){
         Context "Checking file '$($file.Name)'" {
-            $content = Get-Content -Path $file.FullName | Select-Object -First 8
+            $content = Get-Content -Path $($file.FullName) | Select-Object -First 8
 
             if (($($file.Name) -ne 'missing_all.md') -and ($($file.Name) -ne 'missing_yaml.md')){
                 It "1st line should be YAML open tags" {

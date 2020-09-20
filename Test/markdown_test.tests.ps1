@@ -2,7 +2,7 @@
 param (
     [Parameter()]
     [ValidateScript({Test-Path -Path $_})]
-    [string]$FolderPath = 'Git:\Random\DevOps\MarkdownCheck\Incorrect',
+    [string]$FolderPath = 'Git:\Random\DevOps\MarkdownCheck\Correct',
     [Parameter()]
     [string]$Filter = '*.md'
 )
@@ -10,7 +10,7 @@ param (
 #Git:\Random\DevOps\MarkdownCheck\Correct
 
 $Files = Get-ChildItem -Path $FolderPath -Filter $Filter
-#$file = $files[1]
+#$file = $files[4]
 
 Describe -Name 'Markdown validation' {
 
@@ -45,7 +45,7 @@ Describe -Name 'Markdown validation' {
                 }
             }
 
-            if (($($file.Name) -ne 'missing_all.md') -and ($($file.Name) -ne 'missing_yaml.md') -and ($($file.Name) -ne 'missing_author.md')){
+            if (($($file.Name) -ne 'missing_all.md') -and ($($file.Name) -ne 'missing_yaml.md') -and ($($file.Name) -ne 'missing_title.md') -and ($($file.Name) -ne 'missing_author.md')){
                 It "3rd line should be author key/value pair" {
                     $content[2] -match $regex_author_line_3 | Should -Be $true
                 }
@@ -55,7 +55,7 @@ Describe -Name 'Markdown validation' {
                 }
             }
 
-            if (($($file.Name) -ne 'missing_all.md') -and ($($file.Name) -ne 'missing_yaml.md') -and ($($file.Name) -ne 'missing_version.md')){
+            if (($($file.Name) -ne 'missing_all.md') -and ($($file.Name) -ne 'missing_yaml.md') -and ($($file.Name) -ne 'missing_title.md') -and ($($file.Name) -ne 'missing_author.md') -and ($($file.Name) -ne 'missing_version.md')){
                 It "4th line should be version key/value pair" {
                     $content[3] -match $regex_version_line_4 | Should -Be $true
                 }
@@ -65,7 +65,7 @@ Describe -Name 'Markdown validation' {
                 }
             }
 
-            if (($($file.Name) -ne 'missing_all.md') -and ($($file.Name) -ne 'missing_yaml.md')){
+            if (($($file.Name) -ne 'missing_all.md') -and ($($file.Name) -ne 'missing_author.md') -and ($($file.Name) -ne 'missing_title.md') -and ($($file.Name) -ne 'missing_version.md') -and ($($file.Name) -ne 'missing_yaml.md')){
                 It "5th line should be YAML close tags" {
                     $content[4] -match $regex_yaml_line_1and5 | Should -Be $true
                 }
@@ -85,7 +85,7 @@ Describe -Name 'Markdown validation' {
                 }
             }
 
-            if (($($file.Name) -ne 'missing_all.md') -and ($($file.Name) -ne 'missing_toc.md')){
+            if (($($file.Name) -ne 'missing_all.md') -and ($($file.Name) -ne 'missing_author.md') -and ($($file.Name) -ne 'missing_title.md') -and ($($file.Name) -ne 'missing_version.md') -and ($($file.Name) -ne 'missing_toc.md') -and ($($file.Name) -ne 'missing_yaml.md')){
                 It "7th line should be table of contents tags" {
                     $content[6] -match $regex_toc_line_7 | Should -Be $true
                 }
@@ -95,7 +95,7 @@ Describe -Name 'Markdown validation' {
                 }
             }
 
-            if (($($file.Name) -ne 'missing_author.md') -and ($($file.Name) -ne 'missing_title.md') -and ($($file.Name) -ne 'missing_version.md')){
+            if (($($file.Name) -ne 'missing_author.md') -and ($($file.Name) -ne 'missing_title.md') -and ($($file.Name) -ne 'missing_version.md') -and ($($file.Name) -ne 'missing_yaml.md')){
                 It "8th line should be a blank line" {
                     $content[7] -match $regex_line_6and8 | Should -Be $true
                 }
